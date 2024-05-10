@@ -1,6 +1,6 @@
 //16進数計算法
 //負の数のあまり
-
+//VSCODE 行の入れ替えやマルチ選択　ショートカット
 'use strict';
 const answers = [
     '###userName###のいいところは声です。###userName###の特徴的な声は皆を惹きつけ、心に残ります。',
@@ -20,3 +20,47 @@ const answers = [
     '###userName###のいいところはその全てです。ありのままの###userName###自身がいいところなのです。',
     '###userName###のいいところは気配りです。###userName###の配慮が多くの人を救っています。',
 ];
+
+/**
+ * 名前の文字列を渡すと診断結果を返す関数
+ * @param {string} userName ユーザの名前
+ * @return {string} 診断結果
+ */
+function assessment(userName) {
+    // 全文字のコード番号を取得してそれを足し合わせる
+    let sumOfCharCode = 0;
+    for (let i = 0; i < userName.length; i++) {
+        sumOfCharCode = sumOfCharCode + userName.charCodeAt(i);
+    }
+
+    // 文字のコード番号の合計を回答の数で割って添字の数値を求める
+    const index = sumOfCharCode % answers.length;
+    let result = answers[index];
+
+    result = result.replaceAll('###userName###', userName)
+    return result;
+}
+
+// テストを行う関数
+function test() {
+    console.log('診断結果の文章のテスト');
+
+    //太郎
+    console.log('太郎');
+    console.assert(
+        assessment('太郎') ===
+        '太郎のいいところは決断力です。太郎がする決断にいつも助けられる人がいます。',
+        '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。'
+    );
+
+    //次郎
+    console.log('次郎');
+    console.assert(
+        assessment('次郎') ===
+        '次郎のいいところは自制心です。やばいと思ったときにしっかりと衝動を抑えられる次郎が皆から評価されています。',
+        '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。'
+        //あとでエラー見る
+    );
+}
+
+test();
