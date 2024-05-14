@@ -9,11 +9,35 @@ const tweetDivision = document.getElementById('tweet-area');
 
 assessmentButton.addEventListener(
     'click',
-    function() {
-        console.log('ボタンが押されました');
+    () => {
+        const userName = userNameInput.value;
+        if (userName.length === 0) {
+            //名前が空の時は処理を終了する
+            return;
+        }
 
-        // TODO 診断結果表示エリアの作成
+        // 診断表示エリアの作成
+        while (resultDivision.firstChild) {
+            // resultDivision に子要素があれば削除し続ける
+            resultDivision.removeChild(resultDivision.firstChild);
+        }
+        const header = document.createElement('h3');
+        header.innerText = '診断結果';
+        resultDivision.appendChild(header);
+        
+        const paragraph = document.createElement('p');
+        const result = assessment(userName);
+        paragraph.innerText = result;
+        resultDivision.appendChild(paragraph);
+        
         // TODO ツイートエリアの作成
+        
+        while (resultDivision.firstChild) {
+            // resultDivision に子要素があれば削除し続ける
+            tweetDivision.removeChild(tweetDivision.firstChild);
+        }　
+        
+        
     }
 );
 
