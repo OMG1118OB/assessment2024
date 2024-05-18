@@ -1,6 +1,8 @@
 //16進数計算法
 //負の数のあまり
 //VSCODE 行の入れ替えやマルチ選択　ショートカット
+//ツイートの子要素削除回答に
+//asyncとは
 'use strict';
 const userNameInput = document.getElementById('user-name');
 const assessmentButton = document.getElementById('assessment');
@@ -30,14 +32,23 @@ assessmentButton.addEventListener(
         paragraph.innerText = result;
         resultDivision.appendChild(paragraph);
         
-        // TODO ツイートエリアの作成
+        // ツイートエリアの作成
+        tweetDivision.innerText= '';
+        const anchor = document.createElement('a');
+        const hrefValue = 
+            'https://twitter.com/intent/tweet?button_hashtag=あなたのいいところ&ref_src=twsrc%5Etfw';
         
-        while (resultDivision.firstChild) {
-            // resultDivision に子要素があれば削除し続ける
-            tweetDivision.removeChild(tweetDivision.firstChild);
-        }　
+        anchor.setAttribute('href', hrefValue);
+        anchor.setAttribute('class', 'tweet-hashtag-button');
+        anchor.setAttribute('data-text', '診断結果の文章');
+        anchor.innerText = 'Tweet #あなたのいいところ';
         
-        
+        tweetDivision.appendChild(anchor);    
+        ///while (resultDivision.firstChild) {
+        ///    // resultDivision に子要素があれば削除し続ける
+        ///    tweetDivision.removeChild(tweetDivision.firstChild);
+        ///}
+                
     }
 );
 
