@@ -26,7 +26,7 @@ assessmentButton.addEventListener(
         const header = document.createElement('h3');
         header.innerText = '診断結果';
         resultDivision.appendChild(header);
-        
+        //TODO ここの意味再確認する
         const paragraph = document.createElement('p');
         const result = assessment(userName);
         paragraph.innerText = result;
@@ -42,8 +42,15 @@ assessmentButton.addEventListener(
         anchor.setAttribute('class', 'tweet-hashtag-button');
         anchor.setAttribute('data-text', '診断結果の文章');
         anchor.innerText = 'Tweet #あなたのいいところ';
+        /// setAttributeとは
+        tweetDivision.appendChild(anchor);  
         
-        tweetDivision.appendChild(anchor);    
+        const script = document.createElement('script');
+        script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+        tweetDivision.appendChild(script);
+        /// TODO ツイートボタンが表示されないので、アドブロックを切った環境で再度検証する
+
+
         ///while (resultDivision.firstChild) {
         ///    // resultDivision に子要素があれば削除し続ける
         ///    tweetDivision.removeChild(tweetDivision.firstChild);
